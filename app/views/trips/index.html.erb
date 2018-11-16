@@ -1,0 +1,29 @@
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDDRm-aKD3wC6GDqDRZoByvC1chfbGVUUQ&callback=initMap", async: true, defer: true %>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<div class="container">
+	<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Trip ID</th>
+        <th>CheckIns(latitude,longitude)</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @trips.each do |t| %>
+      <tr>
+        <td><%= current_user.email %></td>
+        <td><%= t.id %></td>
+        <td>
+        	<% t.checkins.each do |c| %>
+        		lat: <%= c.lat %> | lng: <%= c.lng %></br>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= render 'layouts/header' %>
+<div id="map"></div>
+
